@@ -1,0 +1,242 @@
+.content-page {
+    padding: 20px;
+}
+
+.phan-trang {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.phan-trang a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    background-color: #007bff;
+}
+
+.phan-trang a:hover {
+    background-color: #0056b3;
+}
+
+table.danh-sach {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table.danh-sach th,
+table.danh-sach td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+table.danh-sach th {
+    background-color: #f2f2f2;
+}
+
+table.danh-sach tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+table.danh-sach a {
+    
+    text-decoration: none;
+}
+table.danh-sach .edit-button {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    color: #1f2d3d;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    box-shadow: none;
+}
+table.danh-sach  .delete-button{
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    box-shadow: none;
+    text-decoration: none;
+}
+table.danh-sach .delete-button:hover{
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+
+table.danh-sach .edit-button:hover {
+    color: #1f2d3d;
+    background-color: #e0a800;
+    border-color: #d39e00;
+    
+}
+table.danh-sach a:hover {
+    text-decoration: underline;
+}
+/* CSS for the "Thêm người dùng mới" button */
+.add-new {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.add-new:hover {
+    background-color: #218838; /* Darker green color on hover */
+}
+
+/* CSS for the search input field */
+.tim-kiem input[type="text"] {
+    padding: 10px;
+    width: 400px; /* Increase the width to make it longer */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* CSS styles here */
+#activateButton,
+#deactivateButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#activateButton {
+    background-color: #28a745;
+    /* Màu xanh */
+    color: #fff;
+}
+
+#deactivateButton {
+    background-color: #dc3545;
+    /* Màu đỏ */
+    color: #fff;
+}
+
+/* CSS for the search button */
+.tim-kiem button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tim-kiem button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* CSS for the title "Quản lý người dùng" */
+.content-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333; /* Dark gray color */
+}
+.form-container {
+    /* width: 400px; */
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+}
+
+.permission-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.phanquyen{
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    box-shadow: none;
+    text-decoration: none;
+   
+}
+.phanquyen:hover{
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    text-decoration: none;
+}
+
+.btn-primary {
+    padding: 8px 10px; /* Giảm padding để nút ngắn lại */
+    width: auto; /* Đặt chiều rộng tự động để nút chỉ rộng đúng phần nội dung */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-secondary{
+    text-decoration: none;
+}
+
+/* css thêm sửa người dùng */
+
+.inputtotal {
+    display: flex;
+
+}
+
+.input1 , .input2 {
+    flex-grow: 1;
+}
+
+.form-group input {
+    border: 1px solid #aca7a7;
+    padding: 10px;
+    border-radius: 3px;
+    /* margin-right: -65px; */
+    width: 94%;
+}
+
+.form-group select {
+    padding: 10px;
+    border: 1px solid #aca7a7;
+    padding: 10px;
+    width: 94%;
+
+}
+
+/* Phân quyền */
