@@ -1,0 +1,8 @@
+/* Footer */
+.footer {
+    height: fit-content;
+    background-color: #949494;
+    text-align: center;
+    padding: 1rem;
+    display: grid;
+}

@@ -22,68 +22,9 @@ class InMemoryUserRepository implements UserRepository
     {
         $this->conn = $conn;
     }
-    /**
-     * {@inheritdoc}
-     */
-    public function findAll():array
-    {
-        try {
-            $stmt = $this->conn->query("SELECT * FROM taikhoan");
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $users = [];
-            foreach ($results as $row) {
-                $users[] = new User(
-                    $row['Id'],
-                    $row['tenDangNhap'],
-                    $row['ho'],
-                    $row['ten'],
-                    $row['matKhau'],
-                    $row['anhDaiDien'],
-                    $row['loai'],
-                    $row['thoiGianTao'],
-                    $row['thoiGianSua'],
-                    $row['kichHoat'],
-                    $row['soDienThoai'],
-                    $row['maQuyen']
-                );
-            }
-            return $users;
 
-        } catch (PDOException $e) {
-            // Xử lý ngoại lệ kết nối cơ sở dữ liệu
-            throw new \Exception("Error connecting to database: " . $e->getMessage());
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findUserOfId(int $Id): User
-    {
-        $stmt = $this->conn->prepare("SELECT * FROM taikhoan WHERE Id = :Id");
-        $stmt->execute(['Id' => $Id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$row) {
-            throw new UserNotFoundException();
-        }
-        return new User(
-            $row['Id'],
-            $row['tenDangNhap'],
-            $row['ho'],
-            $row['ten'],
-            $row['matKhau'],
-            $row['anhDaiDien'],
-            $row['loai'],
-            $row['thoiGianTao'],
-            $row['thoiGianSua'],
-            $row['kichHoat'],
-            $row['soDienThoai'],
-            $row['maQuyen']
-        );
-    }
-
+    //Lấy danh sách account , dùng để kiểm tra đăng nhập
     function getListobj()
     {
         //mảng dữ liệu lấy được từ InMemoryUserRepository.php
@@ -94,7 +35,6 @@ class InMemoryUserRepository implements UserRepository
         if (count($arr) > 0) {
             foreach ($arr as $item) {
                 $obj = [
-                    "Id" => $item["Id"],
                     "tenDangNhap" => $item['tenDangNhap'],
                     "ho" => $item['ho'],
                     "ten" => $item['ten'],
@@ -116,41 +56,59 @@ class InMemoryUserRepository implements UserRepository
             return array("mess" => "Failed");
         }
     }  
-    
-    function getObj(int $Id)
+    //Lấy account bằng tên đăng nhập
+    function getObj($tenDangNhap)
     {
         // Sử dụng prepared statement để tránh SQL Injection
-        $stmt = $this->conn->prepare("SELECT * FROM taikhoan WHERE Id = :Id");
-        //bindParam: Gán giá trị cho placeholder :Id
-        $stmt->bindParam(':Id', $Id, PDO::PARAM_INT);
+        $stmt = $this->conn->prepare("SELECT * FROM taikhoan WHERE tenDangNhap = :tenDangNhap");
+        $stmt->bindParam(':tenDangNhap', $tenDangNhap);
         $stmt->execute();
-    
-        // Fetch dữ liệu
-        $item = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-        // Kiểm tra nếu có dữ liệu trả về
-        if ($item) {
-            $obj = [
-                "Id" => $item["Id"],
-                "tenDangNhap" => $item['tenDangNhap'],
-                "ho" => $item['ho'],
-                "ten" => $item['ten'],
-                "matKhau" => $item['matKhau'],
-                "anhDaiDien" => $item['anhDaiDien'],
-                "loai" => $item['loai'],
-                "thoiGianTao" => $item['thoiGianTao'],
-                "thoiGianSua" => $item['thoiGianSua'],
-                "kichHoat" => $item['kichHoat'],
-                "soDienThoai" => $item['soDienThoai'],
-                "maQuyen" => $item['maQuyen'],
-                "mess" => "success"
-            ];
-            return $obj;
-        } else {
-            // Trường hợp không có dữ liệu trả về
-            return ["mess" => "No data found"];
-        }
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
     
+    // login
+    function login($tenDangNhap, $matKhau)
+    {
+            // truy suất tài khoản trong csdl dựa theo userName
+            $user = $this->getObj($tenDangNhap);
+            // 5 trường hợp
+            // đăng nhập sai pass
+            // Đăng nhập thành công và quyền là user
+            // Đăng nhập thanh công và quyền la admin
+            // Đăng nhập không thành công do tài khoản bị khóa
+            // Đăng nhập không thành công do chưa có tài khoản
+
+            // kiểm tra xem kết quả truy suất có trả về null không
+            // nếu có -> chưa có tài khoản
+            if ($user != null) {
+                // nếu đăng nhập không sai pass
+                if ($user['matKhau'] === $matKhau) {
+                    // lấy thông tin thuộc tính user
+                    if ($user['kichHoat'] === '1') {
+                        return [
+                            "tenDangNhap" => $user['tenDangNhap'],
+                            "ho" => $user['ho'],
+                            "ten" => $user['ten'],
+                            "matKhau" => $user['matKhau'],
+                            "anhDaiDien" => $user['anhDaiDien'],
+                            "loai" => $user['loai'],
+                            "thoiGianTao" => $user['thoiGianTao'],
+                            "thoiGianSua" => $user['thoiGianSua'],
+                            "kichHoat" => $user['kichHoat'],
+                            "soDienThoai" => $user['soDienThoai'],
+                            "maQuyen" => $user['maQuyen'],
+                            "mess" => "success"
+                        ];
+                    } else {
+                        return ['mess' => 'Block'];
+                    }
+                } else {
+                    return ['mess' => 'wrongPass'];
+                }
+            } else {
+                return ['mess' => 'không có'];
+            }
+        }
 
 }

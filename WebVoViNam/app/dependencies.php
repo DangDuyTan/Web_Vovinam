@@ -12,6 +12,7 @@ use Psr\Log\LoggerInterface;
 use App\Infrastructure\Persistence\User\InMemoryUserRepository;
 use App\Infrastructure\Persistence\Database\DB;
 use App\Infrastructure\Persistence\Judge\JudgeService;
+use App\Infrastructure\Persistence\Student\StudentService;
 
 
 return function (ContainerBuilder $containerBuilder) {
@@ -40,6 +41,9 @@ return function (ContainerBuilder $containerBuilder) {
         },
         JudgeRepository::class => function (ContainerInterface $c) {
             return new JudgeService($c->get(PDO::class));
+        },
+        StudentRepository::class => function (ContainerInterface $c) {
+            return new StudentService($c->get(PDO::class));
         },
     ]);
 };

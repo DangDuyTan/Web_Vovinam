@@ -2,63 +2,13 @@
     display:flex; 
     flex-direction:column;
     height: 100vh;
-    font-family: Roboto, sans-serif;
+    width:auto !important;
+    font-family: "robotoMedium";
     position:static;
 }
 
-.content-select {
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: .25rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-}
-.content-select h1 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: bold;
-    margin-left: 1rem;
-}
-.sle_op {
-    display:flex;
-    margin: 1rem;
-
-}
-.flex-1 {
-    flex: 1 1 0%;
-}
-.block_text {
-    display :block;
-    color: #3f3f46;
-}
-.sle_op.option {
-    width:100%;
-    padding: 0.25rem ;
-    border-width: 1px solid #ddd;
-    border-radius: 0.25rem;
-}
-.btn_loc {
-    background-color: #5292f8;
-    color : #fff;
-    padding : 0.5rem;
-    border-radius: 0.25rem;
-    width: 75px;
-    margin-left: 1rem;
-}
-.btn_loc:hover{
-    color: #fff;
-    background-color: #3848fd;
-    border-color: #3848fd;
-}
-.content-show {
+.content-page {
     padding: 20px;
-}
-.content-show h2 {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 700;
-}
-.overflow-x-auto {
-    overflow-x: auto;
 }
 
 .phan-trang {
@@ -81,11 +31,9 @@
 }
 
 table.danh-sach {
-    min-width: 100%;
-    border-width: 1px;
-    background-color: white;
+    width: 100%;
     border-collapse: collapse;
-    margin-top: 1px;
+    margin-top: 20px;
 }
 
 table.danh-sach th,
@@ -93,17 +41,10 @@ table.danh-sach td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
-    font-size: medium;
 }
 
 table.danh-sach th {
     background-color: #f2f2f2;
-    border-width: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    text-align: center;
 }
 
 table.danh-sach tbody tr:nth-child(even) {
@@ -111,6 +52,7 @@ table.danh-sach tbody tr:nth-child(even) {
 }
 
 table.danh-sach a {
+    
     text-decoration: none;
 }
 table.danh-sach .edit-button {
@@ -123,21 +65,21 @@ table.danh-sach .edit-button {
     border-color: #ffc107;
     box-shadow: none;
 }
-table.danh-sach  .save-button{
+table.danh-sach  .delete-button{
     padding: .25rem .5rem;
     font-size: .875rem;
     line-height: 1.5;
     border-radius: .2rem;
     color: #fff;
-    background-color: #5c69fa;
-    border-color: #5c69fa;
+    background-color: #dc3545;
+    border-color: #dc3545;
     box-shadow: none;
     text-decoration: none;
 }
-table.danh-sach .save-button:hover{
+table.danh-sach .delete-button:hover{
     color: #fff;
-    background-color: #3848fd;
-    border-color: #3848fd;
+    background-color: #c82333;
+    border-color: #bd2130;
 }
 
 
@@ -149,6 +91,30 @@ table.danh-sach .edit-button:hover {
 }
 table.danh-sach a:hover {
     text-decoration: underline;
+}
+/* CSS for the "Thêm người dùng mới" button */
+.add-new {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.add-new:hover {
+    background-color: #218838; /* Darker green color on hover */
+}
+
+/* CSS for the search input field */
+.tim-kiem input[type="text"] {
+    padding: 10px;
+    width: 400px; /* Increase the width to make it longer */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 /* CSS styles here */
@@ -172,6 +138,27 @@ table.danh-sach a:hover {
     color: #fff;
 }
 
+/* CSS for the search button */
+.tim-kiem button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.tim-kiem button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* CSS for the title "Quản lý người dùng" */
+.content-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333; /* Dark gray color */
+}
 .form-container {
     /* width: 400px; */
     padding: 20px;
@@ -200,6 +187,7 @@ table.danh-sach a:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 
 .phanquyen{
     padding: .25rem .5rem;
@@ -261,10 +249,3 @@ table.danh-sach a:hover {
 }
 
 /* Phân quyền */
-
-
-
-
-
-
-

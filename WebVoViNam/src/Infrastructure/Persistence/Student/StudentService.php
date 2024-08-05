@@ -4,11 +4,11 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Judge;
+namespace App\Infrastructure\Persistence\Student;
 
 use App\Domain\Judge\ctphieudiem;
 use App\Domain\Student\ketquathi;
-use App\Domain\Judge\JudgeRepository;
+use App\Domain\Student\StudentRepository;
 use App\Domain\Chitietketquathi;
 use App\Domain\Capdai;
 use App\Domain\Khoathi;
@@ -17,7 +17,7 @@ use App\Infrastructure\Persistence\Database\db;
 use PDO;
 use PDOException;
 
-class JudgeService implements JudgeRepository
+class StudentService implements StudentRepository
 {
     private PDO $conn;
     //connect db
@@ -25,55 +25,6 @@ class JudgeService implements JudgeRepository
     {
         $this->conn = $conn;
     }
-    function getListPDiem($khoaThi = '', $capDai = '', $phanThi = '')
-    {
-        $query = "SELECT 
-                    ct.maCTPhieuDiem AS `maCTPhieuDiem`,  -- Thêm dòng này
-                    ms.hoTen AS `hoTen`,
-                    ms.maThe AS `maThe`,
-                    kt.tenKhoaThi AS `tenKhoaThi`,
-                    cd1.tenCapDai AS `tenCapDai`,
-                    kt2.tenKyThuat AS `tenKyThuat`,
-                    ct.ThuocBai AS `ThuocBai`,
-                    ct.NhanhManh AS `NhanhManh`,
-                    ct.TanPhap AS `TanPhap`,
-                    ct.ThuyetPhuc AS `ThuyetPhuc`,
-                    (ct.ThuocBai + ct.NhanhManh + ct.TanPhap + ct.ThuyetPhuc) AS `TongDiem`,
-                    CASE 
-                        WHEN ct.KetQua = 1 THEN 'Đạt'
-                        ELSE 'Không đạt'
-                    END AS `KetQua`,
-                    ct.GhiChu AS `GhiChu`,
-                    ct.NgayCham AS `NgayCham`
-                FROM 
-                    ctphieudiem ct
-                LEFT JOIN 
-                    chitietketquathi ctkq ON ct.maChiTietKetQua = ctkq.maChiTietKetQua
-                LEFT JOIN 
-                    monsinh ms ON ct.maMonSinh = ms.maMonSinh
-                LEFT JOIN 
-                    khoathi kt ON ct.maKhoaThi = kt.maKhoaThi
-                LEFT JOIN 
-                    capdai cd1 ON ct.maCapDai = cd1.maCapDai
-                LEFT JOIN 
-                    kythuat kt2 ON ct.maKyThuat = kt2.maKyThuat
-                WHERE 
-                    (:khoaThi = '' OR kt.maKhoaThi = :khoaThi) AND
-                    (:capDai = '' OR cd1.maCapDai = :capDai) AND
-                    (:phanThi = '' OR kt2.maKyThuat = :phanThi)
-                ORDER BY 
-                    ms.hoTen";
-    
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':khoaThi', $khoaThi);
-        $stmt->bindParam(':capDai', $capDai);
-        $stmt->bindParam(':phanThi', $phanThi);
-    
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-
 
     function getSelect() {
         $queryKhoaThi = "SELECT maKhoaThi, tenKhoaThi FROM khoathi";
@@ -89,37 +40,7 @@ class JudgeService implements JudgeRepository
             'capDai' => $stmtCapDai->fetchAll(PDO::FETCH_ASSOC),
             'phanThi' => $stmtPhanThi->fetchAll(PDO::FETCH_ASSOC)
         ];
-    }
-
-    function updateScore($maCTPhieuDiem, $ThuocBai, $NhanhManh, $TanPhap, $ThuyetPhuc, $GhiChu) {
-        $Diem = $ThuocBai + $NhanhManh + $TanPhap + $ThuyetPhuc;
-        $query = "UPDATE ctphieudiem 
-                  SET 
-                      ThuocBai = :ThuocBai, 
-                      NhanhManh = :NhanhManh, 
-                      TanPhap = :TanPhap, 
-                      ThuyetPhuc = :ThuyetPhuc, 
-                      GhiChu = :GhiChu,
-                      Diem = :Diem,
-                      KetQua = CASE 
-                                  WHEN :Diem >= 5 THEN 1
-                                  ELSE 0
-                              END
-                  WHERE maCTPhieuDiem = :maCTPhieuDiem";
-        
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':maCTPhieuDiem', $maCTPhieuDiem);
-        $stmt->bindParam(':ThuocBai', $ThuocBai);
-        $stmt->bindParam(':NhanhManh', $NhanhManh);
-        $stmt->bindParam(':TanPhap', $TanPhap);
-        $stmt->bindParam(':ThuyetPhuc', $ThuyetPhuc);
-        $stmt->bindParam(':GhiChu', $GhiChu);
-        $stmt->bindParam(':Diem', $Diem);
-    
-        $result = $stmt->execute();
-        return $result;
-    }
-    
+    }  
     
     function DanhSachKQ($khoaThi = '', $capDai = '') {
         $query = "SELECT 

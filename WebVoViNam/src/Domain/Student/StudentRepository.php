@@ -4,16 +4,13 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Judge;
+namespace App\Domain\Student;
 
-interface JudgeRepository
+interface StudentRepository
 {
     //Lấy danh sách 
-    public function getListPDiem();
 
     public function getSelect();
-
-    public function updateScore($maCTPhieuDiem, $ThuocBai, $NhanhManh, $TanPhap, $ThuyetPhuc, $GhiChu);
     
     public function DanhSachKQ();
 

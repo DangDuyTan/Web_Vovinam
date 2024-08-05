@@ -28,15 +28,14 @@ async function getListObj() {
 }
 
 // Lấy một đối tượng bằng id
-async function getObj() {
+async function getObj(userId) {
   try {
         // Gọi AJAX để xóa payment
-        let response = await fetch(`/api/user/{Id}`, {
+        let response = await fetch(`/api/user/${userId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: "function=" + encodeURIComponent("getObj") + "$Id=" + encodeURIComponent(Id),
         });
         // Kiểm tra trạng thái của phản hồi
         if (!response.ok) {
@@ -45,12 +44,12 @@ async function getObj() {
 
     let data = await response.json();
     console.log("Dữ liệu nhận được từ API:", data);
-    await loadData(data);
+
   } catch (error) {
     console.error(error);
   }
 }
-
+/*
 // lấy dữ liệu từ kết quả  rearch
 function searchAccount() {
   document.getElementById("input-search-account").oninput = async function () {
@@ -91,7 +90,7 @@ function searchAccount() {
     }
   };
 }
-
+*/
 async function loadData(data) {
   console.log("Dữ liệu trong loadData:", data);  // Ghi lại dữ liệu nhận được để kiểm tra
 
@@ -371,29 +370,6 @@ function stringSelectorStatus(accountStatus, username) {
   return string;
 }
 */
-// Lấy một đối tượng bằng id
-async function getObj() {
-  try {
-    // Gọi AJAX để xóa payment
-
-    let response = await fetch("../../../BLL/QuanLyNguoiDungBLL.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body:
-        "function=" +
-        encodeURIComponent("getObj") +
-        "&tenDangNhap=" +
-        encodeURIComponent(obj.tenDangNhap),
-    });
-
-    let data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 
 function loadItem(thisPage, limit) {
@@ -466,7 +442,9 @@ window.addEventListener("load", async function () {
   // Thực hiện các hàm bạn muốn sau khi trang web đã tải hoàn toàn, bao gồm tất cả các tài nguyên như hình ảnh, stylesheet, v.v.
   console.log("Trang quản lý người dùng đã load hoàn toàn");
   // await getListUserGr();
+  const userId = // lấy giá trị userId từ trang web của bạn, ví dụ từ URL hoặc input field
   await getListObj();
+  //await getObj(userId);
   loadItem(1, 4);
-  searchAccount();
+  //searchAccount();
 });

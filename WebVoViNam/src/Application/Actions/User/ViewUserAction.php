@@ -19,19 +19,17 @@ class ViewUserAction extends UserAction
         $filepath = realpath(dirname(__DIR__));
         include_once $filepath . '\..\Views\admin\TongQuanQLND.php';
         $output = ob_get_clean();
-
+        $this->logger->info("Users list was viewed.");
         $response = $this->response;
         $response->getBody()->write($output);
         return $response;
     }
     protected function handlePost(): Response
     {
-        $userId = (int) $this->resolveArg('Id');
-
+        $userId = $this->resolveArg('tenDangNhap');
         $result = $this->userRepository->getObj($userId);
-        $this->logger->info("Users list was viewed.");
         $jsonResult = json_encode($result);
-
+        $this->logger->info("Users list was viewed.");
         $response = $this->response->withHeader('Content-Type', 'application/json');
         $response->getBody()->write($jsonResult);
         return $response;

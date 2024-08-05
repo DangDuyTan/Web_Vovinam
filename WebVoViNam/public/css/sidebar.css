@@ -1,0 +1,142 @@
+/* Sidebar */
+
+.content {
+    /* width: ; */
+    flex-grow: 1;
+    margin-left: 250px;
+    height: 100vh;
+
+}
+
+.side-bar {
+    width: 250px;
+    height: 100vh;
+    background-color: #343A40;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.bar-content {
+    height: 100%;
+    overflow: scroll;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+   
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #343A40;
+    height: 100vh;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #706f6f;
+
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #706f6f;
+  }
+
+.logo {
+    display: flex;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 13px 8px;
+    color: rgba(255, 255, 255, 0.8);
+    align-items: center;
+    border-bottom: 1px solid #4b545c;
+}
+
+.logo img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.8);
+    margin-right: 8px;
+    margin-left: 13px;
+}
+
+
+.bar-content {
+    padding: 0px 8px;
+}
+
+.sub-menu .nav-sb {
+    margin-top: 10px;
+}
+
+.nav-sb {
+    padding-left: 0px;
+}
+
+.sub-menu a {
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(194, 199, 208);
+    padding: 8px 16px;
+}
+
+
+.sub-menu a:hover {
+    background-color: rgba(255, 255, 255, .1);
+    color: #fff;
+}
+
+.sub-menu .nav-sb .box-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.sub-menu li {
+    margin-bottom: 5px;
+}
+
+.nav-sb > li > a{
+    position: relative;
+}
+
+.nav-sb > li > a > i {
+    position: absolute;
+    right: 6px;
+    /* transform: rotate(-91deg); */
+    transition: 0.5s;
+}
+
+.active {
+    color: #fff!important;
+    background-color: #007BFF!important;
+}
+
+.ele-sub {
+    display: none;
+    opacity: 1;
+    transition: 1s;
+}
+
+.active-sub {
+    background-color: rgba(255, 255, 255, .1);
+    color: #fff!important;
+}
+
+.menu-header > ul {
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+

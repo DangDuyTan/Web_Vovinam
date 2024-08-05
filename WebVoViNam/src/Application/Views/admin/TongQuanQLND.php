@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="../../css/reset.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -15,11 +15,10 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
     <style>
         <?php 
-        //require('../../css/admin/sidebar.css');
-        //require('../../css/admin/header_admin.css');
-        //require('../../css/admin/footer_admin.css');
-        // require('../../css/admin/danhsachnguoidung2.css');
-        require('css/QLND.css');
+        require('css/admin/QLND.css');
+        require('css/admin/sidebar_admin.css');
+        require('css/footer.css');
+        require('css/header.css');
 
         ?>
     </style>
@@ -28,11 +27,18 @@
 <body>
     <div class="container-sb">
         <div class="side-bar">
-            
+            <?php 
+                $filepath = realpath(dirname(__DIR__));
+                include_once $filepath . '\..\Views\admin\sidebar_admin.php';
+                //require('./header_admin.php'); 
+            ?>
         </div>
         <div class="content">
             <div class="header">
-                <?php //require('./header_admin.php'); ?>
+                <?php 
+                    $filepath = realpath(dirname(__DIR__));
+                    include_once $filepath . '\..\Views\header.php';
+                 ?>
             </div>
             <div class="content-page">
                 <div>
@@ -88,15 +94,15 @@
                     <li class="page-item"><a class="page-link">3</a></li>
                     <li class="page-item"><a class="page-link">Next</a></li> -->
             </ul>
-
             <div class="footer">
                 <?php 
                 $filepath = realpath(dirname(__DIR__));
-                include_once $filepath . '\..\Views\admin\footer_admin.php';
+                include_once $filepath . '\..\Views\footer.php';
                 //require(__DIR__ . '\..\Views\footer.php'); 
                 ?>
-            </div>
         </div>
+        </div>
+        
     </div>
     <!-- Sửa người dùng -->
     <div id="edit-User">

@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
     <style>
         <?php 
-        require('css/Judge-score.css');
+        require('css/Dki_Thi.css');
         require('css/sidebar.css');
         require('css/footer.css');
         require('css/header.css');
@@ -36,7 +36,14 @@
                  ?>
             </div>
             <div class="content-select">
-                <h1 class="text-2xl font-semibold">Quản lý chấm thi</h1>
+                <h1 class="text-2xl font-semibold">Đăng kí dự thi</h1>
+                <div class="tim-kiem">
+                <form id="searchForm" method="GET">
+                    <input class="search" type="search" name="TimKiem" id="input-search-dskq" placeholder="Nhập dữ liệu tìm kiếm...">
+                    <button type="submit">Tìm kiếm</button>
+                </form>
+                </div>
+                
                 <div class="sle_op">
                         <div class="flex-1">
                             <label for="khoa-thi" class="block_text">Khóa thi:</label>
@@ -44,6 +51,7 @@
                         <!--      <option>Chọn Khóa Thi</option>
                           <option>Kỳ thi Thu 2024</option> -->
                             </select>
+                            
                         </div>
                         <div class="flex-1">
                             <label for="cap-dai-du-thi" class="block_text">Cấp đai dự thi:</label>
@@ -52,40 +60,26 @@
                         <!--         <option>Tự Vệ</option> -->
                             </select>
                         </div>
-                        <div class="flex-1">
-                            <label for="phan-thi" class="block_text">Phần thi:</label>
-                            <select id="phan-thi" class="sle_op.option" name = "phanthi">
-                            <!--    <option>Chọn Phần Thi</option>
-                            <option>Đơn Luyện</option> -->
-                            </select>
-                        </div>
+                       
                 </div>
+                
                 <button class="btn_loc" id= "locdanhsach" >Lọc</button>
             </div>
 
             <div class="content-show">
-                <h2 class="text-xl font-semibold mb-4">Danh sách chấm thi</h2>
                 <div class="overflow-x-auto">
-                    <table class="danh-sach">
+                    <table class="danh-sach-khoathicapdai">
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Họ tên</th>
-                            <th>Mã thẻ</th>
                             <th>Khóa thi</th>
-                            <th>Cấp đai dự thi</th>
-                            <th>Phần thi</th>
-                            <th>Thuộc bài (5d)</th>
-                            <th>Nhanh mạnh (2d)</th>
-                            <th>Tấn pháp (2d)</th>
-                            <th>Thuyết phục (1d)</th>
-                            <th>Tổng điểm</th>
-                            <th>Kết quả</th>
-                            <th>Ghi chú</th>
+                            <th>Cấp đai</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày kết thúc</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
-                    <tbody id="danhsachChamThi">
+                    <tbody id="danhsachKetqua-khoathicapdai">
                 <!--    <tr>
                             <td></td>
                             <td></td>
@@ -93,8 +87,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                                <button class="save-button">Lưu</button>
-                                <button class="edit-button">Sửa</button>
+                                <button class="Btndkithi">Đăng kí thi</button>
                             </td>
                         </tr> -->
                     </tbody>
@@ -115,6 +108,7 @@
                     <li class="page-item"><a class="page-link">3</a></li>
                     <li class="page-item"><a class="page-link">Next</a></li> -->
             </ul>
+
             <div class="footer">
                 <?php 
                     $filepath = realpath(dirname(__DIR__));
@@ -124,17 +118,14 @@
         </div>
     </div>
 
-<!-- Sửa người dùng -->
-    <div id="save-CTPD">
-    
+    <div id="XemChiTietKQDK" class="ctkqdk">
+        <div class="detailmodel">
+         <!--   <span class="close">&times;</span>
+             Nội dung chi tiết sẽ được chèn vào đây -->
+        </div>
     </div>
 
-    <!--  Lưu nhómm người dùng -->
-    <div id="edit-CTPD">
-   
-    </div>
-
-    <script src="../../Js/GiamKhao.js?v=<?php echo $version ?>"></script>
+    <script src="../../Js/Dki_Thi.js?v=<?php echo $version ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             getSelect();
